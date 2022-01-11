@@ -1,0 +1,28 @@
+{
+  "name": "gmod-web-api-auth",
+  "version": "1.0.0",
+  "description": "Authenticate Garry's Mod players with a REST-API to offload the networking channel",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup --config"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luca1197/gmod-web-api-auth.git"
+  },
+  "author": "luca1197",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luca1197/gmod-web-api-auth/issues"
+  },
+  "homepage": "https://github.com/luca1197/gmod-web-api-auth#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.25.3",
+    "fastify-helmet": "^5.3.2",
+    "jsonwebtoken": "^8.5.1",
+    "pino-pretty": "^7.3.0",
+    "steamid": "^2.0.0"
+  }
+}
