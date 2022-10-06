@@ -105,7 +105,7 @@ For more details, take a look at [the Wiki of this repository](https://github.co
 
 ### 🤔 FAQ
 **Q:** Do I need to host the API myself?<br>
-**A:** Yes, I was thinking about providing a low-cost (basically just covering my expenses for it) hosted service but I do not expect there to be nearly enough demand. Hosting it is very simple though and you can easily add your own routes to it to make more use of it.
+**A:** Yes.
 
 **Q:** Can I add my own data to the JWT (e.g. user ranks, permissions)?<br>
 **A:** In theory this would be a simple addition, but I did not add that by design because then revokability would become a very important topic which would destroy the advantages of JWTs and require a database, making the setup and authentication way more complex. To still give responses depending on the users permissions on your Garry's Mod server, you could connect to its database and query the ranks by their SteamID.
