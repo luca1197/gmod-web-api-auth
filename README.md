@@ -22,7 +22,7 @@ This project is most useful to developers who create Garry's Mod addons and want
 ### ⚡ Quick start
 1. Download & extract `gwaa-gmod-addon.zip` and `gwaa-nodejs-app.zip` from the [latest release](https://github.com/luca1197/gmod-web-api-auth/releases).
 2. Run `npm install` (If using npm) in the Node.js app directory
-3. Configure the `config_gmod_web_api_auth.lua` file in the Garry's Mod addon and the `.env` & `config.json` files in the Node.js app according to [this Wiki page](https://github.com/luca1197/gmod-web-api-auth/wiki/Configuration).
+3. Configure the `sv_config_gmod_web_api_auth.lua` file in the Garry's Mod addon and the `.env` & `config.json` files in the Node.js app according to [this Wiki page](https://github.com/luca1197/gmod-web-api-auth/wiki/Configuration).
 4. Move the Garry's Mod addon into your servers `addons` folder and restart the server. Start the API server.
 5. Connect to the Garry's Mod server and check your client & server console. You should see a message that says that the session was successfully initialized.
 
