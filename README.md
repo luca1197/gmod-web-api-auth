@@ -10,9 +10,9 @@ This combination of a Garry's Mod Addon and a Node.js Fastify REST-API allows yo
 1. The player joins a Garry's Mod server
 2. The Garry's Mod server makes a requests to the API
 3. The API generates and returns a [JWT](https://jwt.io/) associated to the player
-4. The returned [JWT](https://jwt.io/) is networked to the player and stored clientside in memory
+4. The returned JWT is networked to the player and stored clientside in memory
 5. The client is now able to make authenticated requests to other APIs
-6. Other APIs can easily confirm the validity of the session by validating the [JWT](https://jwt.io/)
+6. Other APIs can easily confirm the validity of the session by validating the JWT
 
 ### ✨ Use cases
 The intended use case is to receive and send large amounts of data from / with a REST-API instead of pushing it through the Garry's Mod network channel. Examples for this would be images and large JSON payloads which would otherwise even need to be split into several parts in some cases because of the 64kb net message size limit. In general, a web server can easily respond to **way** more requests than the Garry's Mod network channel.
