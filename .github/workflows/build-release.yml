@@ -1,17 +1,18 @@
 name: Build and release
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
 
 jobs:
   build-release:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout repository"
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Build
         run: |
@@ -20,14 +21,10 @@ jobs:
           zip -r ../gwaa-gmod-addon.zip . -x 'README.md'
           cd ../src-nodejs
           zip -r ../gwaa-nodejs-app.zip . -x 'README.md' -x '.gitignore'
-      
+
       - name: Release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.RELEASE_TOKEN }}"
-          prerelease: false
-          automatic_release_tag: "latest"
-          title: "gmod-web-api-auth"
-          files: |
-            gwaa-gmod-addon.zip
-            gwaa-nodejs-app.zip
+        env:
+          GITHUB_TOKEN: ${{ github.TOKEN }}
+        shell: bash
+        run: |
+          gh release upload ${{github.event.release.tag_name}} gwaa-gmod-addon.zip gwaa-nodejs-app.zip
