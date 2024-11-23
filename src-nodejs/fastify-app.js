@@ -1,5 +1,5 @@
 import fastify from 'fastify'
-import fastify_helmet from 'fastify-helmet'
+import fastify_helmet from '@fastify/helmet'
 import { promises as fs } from 'fs'
 import dotenv from 'dotenv'
 
@@ -70,7 +70,13 @@ class App {
 			this.fastify = fastify({
 				logger: {
 					level: 'info',
-					prettyPrint: true,
+					transport: {
+						target: 'pino-pretty',
+						options: {
+							translateTime: 'HH:MM:ss Z',
+							ignore: 'pid,hostname',
+						},
+					}
 				},
 				disableRequestLogging: true,
 			})
