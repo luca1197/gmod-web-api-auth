@@ -33,7 +33,7 @@ function GWAA.AuthPlayer(ply)
 
 		local jwtExpiration = 60 * 30 -- Fallback value
 		if GWAA.APIInfo and isnumber(GWAA.APIInfo["jwt_expiration"]) then
-			jwtExpiration = GWAA.APIInfo["jwt_expiration"] - 60 -- Re-auth users a bit earlier so that they will always have a valid session
+			jwtExpiration = GWAA.APIInfo["jwt_expiration"] - 90 -- Re-auth users a bit earlier so that they will always have a valid session
 		end
 
 		ply.GWAA_Expiration = CurTime() + jwtExpiration
