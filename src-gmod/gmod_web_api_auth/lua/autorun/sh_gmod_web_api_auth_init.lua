@@ -13,7 +13,7 @@ function GWAA.LoadDirectory(dir)
 
 	local files, dirs = file.Find(dir .. "*", "LUA")
 	for _, fileName in ipairs(files) do
-		local isServer = string.StartWith(fileName, "sv")
+		local isServer = string.StartsWith(fileName, "sv")
 		if isServer and not string.EndsWith(fileName, "_nl") then
 			MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, "Loading serverside file: " .. dir .. fileName .. "\n")
 			if SERVER then
@@ -21,7 +21,7 @@ function GWAA.LoadDirectory(dir)
 			end
 		end
 
-		local isClient = string.StartWith(fileName, "cl")
+		local isClient = string.StartsWith(fileName, "cl")
 		if isClient and not string.EndsWith(fileName, "_nl") then
 			MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, "Loading clientside file: " .. dir .. fileName .. "\n")
 			if SERVER then
@@ -32,7 +32,7 @@ function GWAA.LoadDirectory(dir)
 			end
 		end
 
-		if (string.StartWith(fileName, "config") or string.StartWith(fileName, "sh")) and not string.EndsWith(fileName, "_nl") then
+		if (string.StartsWith(fileName, "config") or string.StartsWith(fileName, "sh")) and not string.EndsWith(fileName, "_nl") then
 			MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, "Loading config or shared file: " .. dir .. fileName .. "\n")
 			if SERVER then
 				include(dir .. fileName)
