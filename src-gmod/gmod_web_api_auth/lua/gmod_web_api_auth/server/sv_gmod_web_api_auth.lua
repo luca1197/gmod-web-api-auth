@@ -58,11 +58,13 @@ end)
 */
 timer.Create("GWAA:AuthRefresh", 15, 0, function()
 
+	local curTime = CurTime()
+
 	for _, v in ipairs(player.GetHumans()) do
 		
 		if not v.GWAA_Ready or not isnumber(v.GWAA_Expiration) then continue end
 
-		if CurTime() > v.GWAA_Expiration then
+		if curTime > v.GWAA_Expiration then
 			GWAA.AuthPlayer(v)
 		end
 
