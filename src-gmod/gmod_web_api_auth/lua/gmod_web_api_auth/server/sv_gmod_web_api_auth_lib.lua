@@ -105,6 +105,7 @@ end
 function GWAA.CreatePlayerSession(ply, callback)
 
 	if not IsValid(ply) then
+		GWAA.SafeCallback(callback, false)
 		return
 	end
 
