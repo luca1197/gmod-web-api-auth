@@ -6,11 +6,14 @@ util.AddNetworkString("GWAA:Auth")
 hook.Add("InitPostEntity", "GWAA:CheckAPIServer", function()
 
 	GWAA.GetAPIStatus(function(available, info)
-		GWAA.PrintToConsole(available and "API is available" or "API is NOT available")
-
-		if istable(info) then
-			GWAA.APIInfo = info
+		
+		if not available or not istalbe(info) then
+			GWAA.PrintToConsole(available and "API is available" or "API is *NOT* available")
+			return
 		end
+
+		GWAA.APIInfo = info
+
 	end)
 
 	hook.Remove("InitPostEntity", "GWAA:CheckAPIServer")
@@ -60,18 +63,27 @@ end)
 */
 timer.Create("GWAA:AuthRefresh", 15, 0, function()
 
-	local curTime = CurTime()
+	GWAA.GetAPIStatus(function(available)
 
-	for _, v in ipairs(player.GetHumans()) do
-		
-		if not v.GWAA_Ready or not isnumber(v.GWAA_Expiration) then
-			continue
+		if not available then
+			GWAA.PrintToConsole("Failed to re-auth players: API is not available. Retrying in " .. math.Round(timer.TimeLeft("GWAA:AuthRefresh")) .. " seconds...")
+			return
 		end
 
-		if curTime > v.GWAA_Expiration then
-			GWAA.AuthPlayer(v)
-		end
+		local curTime = CurTime()
 
-	end
+		for _, v in ipairs(player.GetHumans()) do
+			
+			if not v.GWAA_Ready or not isnumber(v.GWAA_Expiration) then
+				continue
+			end
+
+			if curTime > v.GWAA_Expiration then
+				GWAA.AuthPlayer(v)
+			end
+
+		end
+	
+	end)
 
 end)
