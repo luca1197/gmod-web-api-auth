@@ -1,13 +1,13 @@
 GWAA = GWAA or {}
-GWAA.ColorPrefix = Color(0, 89, 255)
+GWAA.ColorPrefix = Color(57, 119, 234)
 GWAA.ColorText = Color(230, 230, 230)
 
 function GWAA.PrintToConsole(msg)
-	MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, msg .. "\n")
+	MsgC(GWAA.ColorText, "[", GWAA.ColorPrefix, "gmod-web-api-auth", GWAA.ColorText, "] ", GWAA.ColorText, msg .. "\n")
 end
 
 local StartTime = SysTime()
-MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, "Loading started!\n")
+GWAA.PrintToConsole("Loading started!")
 
 function GWAA.LoadDirectory(dir)
 
@@ -15,7 +15,7 @@ function GWAA.LoadDirectory(dir)
 	for _, fileName in ipairs(files) do
 		local isServer = string.StartsWith(fileName, "sv")
 		if isServer and not string.EndsWith(fileName, "_nl") then
-			MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, "Loading serverside file: " .. dir .. fileName .. "\n")
+			GWAA.PrintToConsole("Loading serverside file: " .. dir .. fileName)
 			if SERVER then
 				include(dir .. fileName)
 			end
@@ -23,7 +23,7 @@ function GWAA.LoadDirectory(dir)
 
 		local isClient = string.StartsWith(fileName, "cl")
 		if isClient and not string.EndsWith(fileName, "_nl") then
-			MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, "Loading clientside file: " .. dir .. fileName .. "\n")
+			GWAA.PrintToConsole("Loading clientside file: " .. dir .. fileName)
 			if SERVER then
 				AddCSLuaFile(dir .. fileName)
 			end
@@ -33,7 +33,7 @@ function GWAA.LoadDirectory(dir)
 		end
 
 		if (string.StartsWith(fileName, "config") or string.StartsWith(fileName, "sh")) and not string.EndsWith(fileName, "_nl") then
-			MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, "Loading config or shared file: " .. dir .. fileName .. "\n")
+			GWAA.PrintToConsole("Loading config or shared file: " .. dir .. fileName)
 			if SERVER then
 				include(dir .. fileName)
 				AddCSLuaFile(dir .. fileName)
@@ -54,4 +54,4 @@ end
 -- Main directory
 GWAA.LoadDirectory("gmod_web_api_auth/")
 
-MsgC(GWAA.ColorPrefix, "[gmod-web-api-auth] ", GWAA.ColorText, "Loading finished within " .. math.Round(SysTime() - StartTime, 3) .. " seconds!\n")
+GWAA.PrintToConsole("Loading finished within " .. math.Round(SysTime() - StartTime, 3) .. " seconds!")
