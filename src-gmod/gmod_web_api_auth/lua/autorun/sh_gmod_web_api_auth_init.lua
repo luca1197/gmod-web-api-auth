@@ -45,7 +45,9 @@ function GWAA.LoadDirectory(dir)
 	end
 
 	for k, v in ipairs(dirs) do
-		if string.find(v, "_nl", 1, true) then continue end -- Do not load directories with the _nl (no load) suffix
+		if string.find(v, "_nl", 1, true) then -- Do not load directories with the _nl (no load) suffix
+			continue
+		end
 		GWAA.LoadDirectory(dir .. v .. "/")
 	end
 

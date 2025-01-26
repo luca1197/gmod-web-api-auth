@@ -16,7 +16,9 @@ end)
 net.Receive("GWAA:Auth", function()
 
 	local jwt = net.ReadString()
-	if not isstring(jwt) or #jwt < 8 then return end
+	if not isstring(jwt) or #jwt < 8 then
+		return
+	end
 
 	if GWAA._Session_JWT == nil then
 		hook.Run("GWAA:InitialAuthenticated", jwt)

@@ -43,7 +43,9 @@ end
 */
 function GWAA.GetAPIServerURL()
 
-	if not isstring(GWAA.APIServerURL) then return end
+	if not isstring(GWAA.APIServerURL) then
+		return
+	end
 
 	return string.EndsWith(GWAA.APIServerURL, "/") and GWAA.APIServerURL or (GWAA.APIServerURL .. "/")
 
@@ -102,7 +104,9 @@ end
 */
 function GWAA.CreatePlayerSession(ply, callback)
 
-	if not IsValid(ply) then return end
+	if not IsValid(ply) then
+		return
+	end
 
 	FetchAPIAuthed("auth", {["steamid"] = ply:SteamID64()}, function(body)
 		
@@ -133,7 +137,9 @@ end
 */
 net.Receive("GWAA:Ready", function(_, ply)
 
-	if ply.GWAA_Ready then return end
+	if ply.GWAA_Ready then
+		return
+	end
 
 	ply.GWAA_Ready = true
 	hook.Run("GWAA:Ready", ply)

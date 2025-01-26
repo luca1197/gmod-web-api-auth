@@ -22,7 +22,9 @@ end)
 */
 function GWAA.AuthPlayer(ply)
 
-	if not IsValid(ply) or not ply.GWAA_Ready then return end
+	if not IsValid(ply) or not ply.GWAA_Ready then
+		return
+	end
 
 	GWAA.CreatePlayerSession(ply, function(success, jwt)
 		
@@ -62,7 +64,9 @@ timer.Create("GWAA:AuthRefresh", 15, 0, function()
 
 	for _, v in ipairs(player.GetHumans()) do
 		
-		if not v.GWAA_Ready or not isnumber(v.GWAA_Expiration) then continue end
+		if not v.GWAA_Ready or not isnumber(v.GWAA_Expiration) then
+			continue
+		end
 
 		if curTime > v.GWAA_Expiration then
 			GWAA.AuthPlayer(v)
