@@ -7,8 +7,8 @@ hook.Add("InitPostEntity", "GWAA:CheckAPIServer", function()
 
 	GWAA.GetAPIStatus(function(available, info)
 		
+		GWAA.PrintToConsole(available and "API is available" or "API is *NOT* available")
 		if not available or not istalbe(info) then
-			GWAA.PrintToConsole(available and "API is available" or "API is *NOT* available")
 			return
 		end
 
